@@ -79,6 +79,12 @@ const NavigationBar = () => {
                 } // Render profile picture as the titl
                 id="basic-nav-dropdown"
               >
+                <NavDropdown.Item as={Link} to={"/ReviewPage"}>
+                  My Reviews
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to={"/favorites"}>
+                  My Favorites
+                </NavDropdown.Item>
                 <NavDropdown.Item onClick={handleSignOut}>
                   Sign Out
                 </NavDropdown.Item>

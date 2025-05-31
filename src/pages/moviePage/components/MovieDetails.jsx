@@ -47,7 +47,7 @@ function MovieDetails({ movie }) {
     navigate("/ReviewForm", { state: { movie } });
   };
   return (
-    <div className="movie-details">
+    <div className="movie-details" style={{ textAlign: "left" }}>
       {/* Title with Heart Icon */}
       <div className="movie-header">
         <h1>{movie.title}</h1>

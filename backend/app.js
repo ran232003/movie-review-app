@@ -60,7 +60,7 @@ const test = async () => {
     console.log(error);
   }
 };
-test();
+
 app.use(function (error, req, res, next) {
   //console.log(error);
   console.log("error controller", error.message);

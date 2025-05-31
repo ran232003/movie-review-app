@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    userName: {
+      type: String,
+      required: true,
+    },
     favoriteMovies: {
       type: [favoriteMovieSchema], // Embedded array of favorite movies
       default: [], // Start with an empty array at signup

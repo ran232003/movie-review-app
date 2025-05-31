@@ -8,8 +8,8 @@ const {
 const { verifyToken, checkSchema } = require("../middleware/helperFunctions");
 
 const router = express.Router();
-router.post("/signin", checkSchema("authScema.json"), signin);
-router.post("/signup", signup);
+router.post("/signin", checkSchema("login.json"), signin);
+router.post("/signup", checkSchema("authScema.json"), signup);
 router.get("/getUser", verifyToken, getUser);
 router.get("/signout", signout);
 

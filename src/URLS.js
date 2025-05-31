@@ -8,3 +8,5 @@ export const FAVORITE_MOVIE_URL =
   "http://localhost:5000/api/movie/movies/favorite";
 export const CREATE_REVIEW_URL =
   "http://localhost:5000/api/movie/review/createReview";
+export const GET_USER_REVIEWS_URL =
+  "http://localhost:5000/api/movie/review/getUserReviews";

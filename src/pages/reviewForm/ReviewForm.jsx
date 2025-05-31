@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { CREATE_REVIEW_URL } from "../../URLS";
 import { toastAction } from "../../store/toastSlice";
 import { userAction } from "../../store/userSlice";
+import PageWrapper from "../../global/PageWrapper ";
+import { reviewAction } from "../../store/ReviewSlice";
 const ReviewForm = () => {
   const location = useLocation();
   const { handleApiCall } = useApiHelper();
@@ -39,7 +41,8 @@ const ReviewForm = () => {
       payload,
       (data) => {
         if (data.status === "ok") {
-          dispatch(userAction.setUser(data.user));
+          console.log(data, "data");
+          dispatch(reviewAction.setReview(data.data));
         }
 
         // navigate("/");
@@ -51,23 +54,25 @@ const ReviewForm = () => {
   };
 
   return (
-    <Container className="d-flex justify-content-center">
-      <Card
-        className="p-4 mt-4 shadow-lg"
-        style={{ maxWidth: "700px", width: "100%" }}
-      >
-        <Card.Body>
-          <h2 className="text-center mb-4 text-primary">
-            Write a Movie Review
-          </h2>
-          <CardForm
-            handleChange={handleChange}
-            review={review}
-            handleSubmit={handleSubmit}
-          />
-        </Card.Body>
-      </Card>
-    </Container>
+    <PageWrapper>
+      <Container className="d-flex justify-content-center">
+        <Card
+          className="p-4 mt-4 shadow-lg"
+          style={{ maxWidth: "700px", width: "100%" }}
+        >
+          <Card.Body>
+            <h2 className="text-center mb-4 text-primary">
+              Write a Movie Review
+            </h2>
+            <CardForm
+              handleChange={handleChange}
+              review={review}
+              handleSubmit={handleSubmit}
+            />
+          </Card.Body>
+        </Card>
+      </Container>
+    </PageWrapper>
   );
 };
 

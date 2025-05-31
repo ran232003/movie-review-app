@@ -4,8 +4,8 @@ var jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const signup = async (req, res, next) => {
-  const { email, password } = req.body;
-
+  const { email, password, userName } = req.body;
+  // Check if all required fields are provided
   try {
     // Check if the email already exists
     let checkUser = await User.findOne({ email: email });
@@ -23,7 +23,7 @@ const signup = async (req, res, next) => {
     let user = new User({
       email: email,
       password: hash,
-
+      userName: userName,
       isAdmin: false,
     });
 

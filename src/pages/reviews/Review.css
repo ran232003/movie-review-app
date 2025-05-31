@@ -1,0 +1,92 @@
+.mainRevSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.card-div {
+  transition: transform 0.3s ease-in-out;
+}
+.card-div:hover {
+  transform: scale(1.05);
+}
+.card-div:hover .card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.card-div:hover .card-body {
+  background-color: #f8f9fa;
+}
+.card-div:hover .card-title {
+  color: #007bff;
+}
+.card-div:hover .card-text {
+  color: #6c757d;
+}
+.card-div:hover .card-footer {
+  background-color: #f8f9fa;
+}
+.review-content-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.review-card {
+  width: 100%;
+  max-width: 800px;
+  border: none;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.movie-poster {
+  height: 400px;
+  object-fit: cover;
+}
+
+.movie-details {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.movie-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.author {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.date {
+  font-size: 14px;
+  color: #999;
+}
+
+.review-details {
+  margin-top: 30px;
+}
+
+.review-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+.review-content {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}

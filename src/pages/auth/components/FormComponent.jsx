@@ -12,7 +12,7 @@ function FormComponent({
   isSignup,
 }) {
   const filteredFormArray = authFormArray.filter((item) => {
-    if (item.name === "confirmPassword") {
+    if (item.name === "confirmPassword" || item.name === "userName") {
       return isSignup; // Only include confirmPassword if isSignup is true
     }
     return true; // Include all other fields

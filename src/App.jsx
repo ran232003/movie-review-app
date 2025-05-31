@@ -19,6 +19,9 @@ import MoviePage from "./pages/moviePage/MoviePage";
 import Loading from "./global/LoadingSpinners";
 import FavoritePage from "./pages/favorites/FavoritePage";
 import ReviewForm from "./pages/reviewForm/ReviewForm";
+import PrivateAuth from "./global/PrivateAuth.jsx";
+import ReviewPage from "./pages/reviews/ReviewPage.jsx";
+import ReviewContent from "./pages/reviews/reviewShow/ReviewContent.jsx";
 
 function App() {
   const { handleApiCall } = useApiHelper();
@@ -51,9 +54,13 @@ function App() {
             <Route path="/auth/signup" element={<AuthForm />} />
             <Route path="/auth/signin" element={<AuthForm />} />
             <Route path="/movieSearch" element={<MovieSearch />} />
-            <Route path="/favorites" element={<FavoritePage />} />
             <Route path="/movie-page/:id" element={<MoviePage />} />
-            <Route path="/ReviewForm" element={<ReviewForm />} />
+            <Route path="/ReviewContent/:id" element={<ReviewContent />} />
+            <Route element={<PrivateAuth />}>
+              <Route path="favorites" element={<FavoritePage />} />
+              <Route path="ReviewForm" element={<ReviewForm />} />
+              <Route path="ReviewPage" element={<ReviewPage />} />
+            </Route>
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

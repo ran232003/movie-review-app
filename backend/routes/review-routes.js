@@ -11,10 +11,14 @@ const {
   getMovie,
   handleFavorite,
 } = require("../controllers/movie-controller");
-const { createReview } = require("../controllers/review-controller");
+const {
+  createReview,
+  getUserReviews,
+} = require("../controllers/review-controller");
 
 const router = express.Router();
 
 router.post("/createReview", verifyToken, createReview);
+router.get("/getUserReviews", verifyToken, getUserReviews);
 
 module.exports = router;

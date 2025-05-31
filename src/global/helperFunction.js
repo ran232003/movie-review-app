@@ -3,6 +3,7 @@ export const yupSchema = (action) => {
   switch (action) {
     case "signup":
       return Yup.object().shape({
+        userName: Yup.string().min(1, "must be at least 1 characters"),
         email: Yup.string()
           .email("Invalid email")
           .required("Email is required"),
@@ -29,18 +30,16 @@ export const yupSchema = (action) => {
   }
 };
 export const authFormArray = [
+  { name: "userName", label: "UserName", type: "text" },
   { name: "email", label: "Email", type: "email" },
+
   { name: "password", label: "Password", type: "password" },
   { name: "confirmPassword", label: "Confirm Password", type: "password" },
 ];
 export const getInitValues = (action) => {
   switch (action) {
     case "/auth/signup":
-      return {
-        email: "",
-        password: "",
-        confirmPassword: "",
-      };
+      return { userName: "", email: "", password: "", confirmPassword: "" };
 
     case "/auth/signin":
       return {

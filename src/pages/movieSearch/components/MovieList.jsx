@@ -4,6 +4,7 @@ import MovieItem from "./MovieItem";
 import { Container, Row, Col } from "react-bootstrap";
 
 const MovieList = ({ movies }) => {
+  console.log(movies, "movies");
   return (
     <Container className="mt-4">
       <Row className="justify-content-center">
