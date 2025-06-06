@@ -1,8 +1,8 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, reviewUserId, userIdent }) => {
   const naigate = useNavigate();
   const { poster_path, movieTitle, userId, title, subtitle } = review;
   const handleNavigation = () => {
@@ -10,6 +10,13 @@ const ReviewCard = ({ review }) => {
       state: { review },
     });
   };
+  const handleEdit = (e) => {
+    e.stopPropagation();
+    naigate(`/edit/${movieTitle}`, {
+      state: { review },
+    });
+  };
+  console.log(userIdent, reviewUserId);
   return (
     <Card
       onClick={handleNavigation}
@@ -45,6 +52,9 @@ const ReviewCard = ({ review }) => {
           {/* Review Title */}
           <h5 className="fw-bold mt-2">{title}</h5>
           {/* Review Subtitle */}
+          {userIdent === reviewUserId ? (
+            <Button onClick={handleEdit}>EDIT</Button>
+          ) : null}
         </Card.Body>
       </div>
     </Card>

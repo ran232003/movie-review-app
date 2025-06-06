@@ -6,20 +6,31 @@ import "./ReviewForm.css";
 import CardForm from "./components/CardForm";
 import { useApiHelper } from "../../global/apiHelper";
 import { useDispatch } from "react-redux";
-import { CREATE_REVIEW_URL } from "../../URLS";
+import { CREATE_REVIEW_URL, EDIT_REVIEW_URL } from "../../URLS";
 import { toastAction } from "../../store/toastSlice";
 import { userAction } from "../../store/userSlice";
 import PageWrapper from "../../global/PageWrapper ";
 import { reviewAction } from "../../store/ReviewSlice";
 const ReviewForm = () => {
   const location = useLocation();
+  const state = location?.pathname.includes("edit") ? "edit" : "create";
+
+  const defaultReview =
+    state === "create"
+      ? {
+          title: "",
+          subtitle: "",
+          content: "",
+        }
+      : {
+          title: location.state.review.title,
+          subtitle: location.state.review.subtitle,
+          content: location.state.review.content,
+        };
+
   const { handleApiCall } = useApiHelper();
   const dispatch = useDispatch();
-  const [review, setReview] = useState({
-    title: "",
-    subtitle: "",
-    content: "",
-  });
+  const [review, setReview] = useState(defaultReview);
 
   const handleChange = (field, value) => {
     setReview((prev) => ({ ...prev, [field]: value }));
@@ -27,30 +38,49 @@ const ReviewForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let { id, title, poster_path } = location.state.movie;
-    let payload = {
-      movieId: id,
-      movieTitle: title,
-      poster_path: poster_path,
-      ...review,
-    };
-    console.log("Review submitted:", payload);
-    handleApiCall(
-      "POST",
-      CREATE_REVIEW_URL,
-      payload,
-      (data) => {
-        if (data.status === "ok") {
-          console.log(data, "data");
-          dispatch(reviewAction.setReview(data.data));
-        }
+    if (state === "create") {
+      let { id, title, poster_path } = location.state.movie;
+      let payload = {
+        movieId: id,
+        movieTitle: title,
+        poster_path: poster_path,
+        ...review,
+      };
+      handleApiCall(
+        "POST",
+        CREATE_REVIEW_URL,
+        payload,
+        (data) => {
+          if (data.status === "ok") {
+            dispatch(reviewAction.setReview(data.data));
+          }
 
-        // navigate("/");
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+          // navigate("/");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      //edit
+      let { _id } = location.state.review;
+      let payload = { ...review, id: _id };
+      handleApiCall(
+        "POST",
+        EDIT_REVIEW_URL,
+        payload,
+        (data) => {
+          if (data.status === "ok") {
+            dispatch(reviewAction.setReview(data.data));
+          }
+
+          // navigate("/");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   };
 
   return (
@@ -67,6 +97,7 @@ const ReviewForm = () => {
             <CardForm
               handleChange={handleChange}
               review={review}
+              state={state}
               handleSubmit={handleSubmit}
             />
           </Card.Body>

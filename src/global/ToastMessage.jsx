@@ -19,7 +19,6 @@ function ToastMessage(props) {
   useEffect(() => {
     //setShow(true);
   }, []);
-  console.log(toast);
   if (toast) {
     return (
       <Row className="custom-toast">

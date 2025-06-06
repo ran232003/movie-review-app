@@ -6,7 +6,6 @@ import "../Review.css";
 function ReviewContent() {
   const location = useLocation();
   const { review } = location.state;
-  console.log(review);
 
   if (!review) {
     return <div>No review found.</div>;

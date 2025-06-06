@@ -23,8 +23,6 @@ function MovieSearch() {
   const fetchMovies = (page = 1) => {
     if (!query.trim()) return;
 
-    console.log(`Searching for: ${query}, Page: ${page}`);
-
     const searchParams = new URLSearchParams();
     searchParams.append("page", page);
     searchParams.append("query", query);
@@ -36,13 +34,10 @@ function MovieSearch() {
       url,
       {},
       (data) => {
-        console.log(data.data);
         setMovieListResponse(data.data.results || []);
         setPages({ current: page, total: data.data.total_pages || 1 });
       },
-      (error) => {
-        console.log(error);
-      }
+      (error) => {}
     );
   };
 

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button, Form } from "react-bootstrap";
 import ReactQuill from "react-quill";
-function CardForm({ review, handleSubmit, handleChange }) {
+function CardForm({ review, handleSubmit, handleChange, state }) {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
@@ -48,7 +48,7 @@ function CardForm({ review, handleSubmit, handleChange }) {
           type="submit"
           className="w-100 mt-3 review-btn"
         >
-          Submit Review
+          {state === "create" ? "Submit Review" : "Edit Review"}
         </Button>
       </Form>
     </div>

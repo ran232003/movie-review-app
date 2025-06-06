@@ -14,10 +14,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useApiHelper } from "./apiHelper";
 import { SING_OUT_URL } from "../URLS";
 import { userAction } from "../store/userSlice";
+import { resetStore } from "../store/actions";
 
 const NavigationBar = () => {
   const { handleApiCall } = useApiHelper();
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => {
@@ -29,7 +29,8 @@ const NavigationBar = () => {
       SING_OUT_URL,
       {},
       (data) => {
-        dispatch(userAction.removeUser());
+        // dispatch(userAction.removeUser());
+        dispatch(resetStore());
         navigate("/");
       },
       (error) => {
@@ -37,6 +38,7 @@ const NavigationBar = () => {
       }
     );
   };
+  console.log("navigation", user);
 
   return (
     <>
@@ -60,6 +62,9 @@ const NavigationBar = () => {
               </Nav.Link>
               <Nav.Link className="my-nav-link" as={Link} to={"/movieSearch"}>
                 Search
+              </Nav.Link>
+              <Nav.Link className="my-nav-link" as={Link} to={"/reviews"}>
+                Reviews
               </Nav.Link>
               {user ? (
                 <Nav.Link className="my-nav-link" as={Link} to={"/favorites"}>

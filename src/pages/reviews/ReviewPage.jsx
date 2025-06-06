@@ -8,13 +8,16 @@ import { GET_USER_REVIEWS_URL } from "../../URLS";
 import ReviewCard from "./components/ReviewCard";
 import SearchReview from "./components/SearchReview";
 import "./Review.css";
-function ReviewPage(props) {
+function ReviewPage({ action }) {
   const { handleApiCall } = useApiHelper();
   const dispatch = useDispatch();
   const reviews = useSelector((state) => {
-    console.log(state.review);
-    return state.review.reviewsArray;
+    return state.review[action ? action : "reviewsArray"];
   });
+  const user = useSelector((state) => {
+    return state.user.user;
+  });
+  console.log(user);
   const [tempReviews, setTempReviews] = React.useState([]);
   useEffect(() => {
     setTempReviews(reviews);
@@ -35,7 +38,6 @@ function ReviewPage(props) {
       GET_USER_REVIEWS_URL,
       {},
       (data) => {
-        console.log(data.data);
         if (data.status === "ok") {
           dispatch(reviewAction.setReview(data.data));
         }
@@ -51,7 +53,6 @@ function ReviewPage(props) {
       getReviews();
     }
   }, []);
-  console.log(tempReviews);
   return (
     <div>
       <SearchReview handleSearch={handleSearch} />
@@ -60,7 +61,12 @@ function ReviewPage(props) {
         style={{ padding: "1rem" }}
       >
         {tempReviews.map((review) => (
-          <ReviewCard key={review._id} review={review} />
+          <ReviewCard
+            key={review._id}
+            reviewUserId={review.userId._id}
+            review={review}
+            userIdent={user._id}
+          />
         ))}
       </div>
     </div>

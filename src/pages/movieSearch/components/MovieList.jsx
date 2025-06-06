@@ -4,10 +4,9 @@ import MovieItem from "./MovieItem";
 import { Container, Row, Col } from "react-bootstrap";
 
 const MovieList = ({ movies }) => {
-  console.log(movies, "movies");
   return (
     <Container className="mt-4">
-      <Row className="justify-content-center">
+      <Row className="justify-content-start">
         {movies.length > 0 ? (
           movies.map((movie) => (
             <Col

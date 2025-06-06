@@ -28,7 +28,8 @@ function MovieDetails({ movie }) {
       payLoad,
       (data) => {
         if (data.status === "ok") {
-          dispatch(userAction.setUser(data.user));
+          console.log(data);
+          dispatch(userAction.setUser(data.data));
 
           setLiked(!liked);
         }
