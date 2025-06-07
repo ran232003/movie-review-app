@@ -16,7 +16,6 @@ const ReviewCard = ({ review, reviewUserId, userIdent }) => {
       state: { review },
     });
   };
-  console.log(userIdent, reviewUserId);
   return (
     <Card
       onClick={handleNavigation}

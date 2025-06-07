@@ -9,7 +9,6 @@ const TaskSlice = createSlice({
   },
   reducers: {
     setAllTasks(state, action) {
-      console.log(action.payload, "test");
       state.allTasks = action.payload;
     },
     setMyTasks(state, action) {

@@ -5,7 +5,6 @@ const MyError = require("../models/MyError");
 require("dotenv").config();
 
 const getMoviesList = async (req, res, next) => {
-  console.log(process.env.USE_API, "test", process.env.USE_API == "true");
   if (process.env.USE_API == "true") {
     console.log(req.query.query, req.query.page, "test", req.query);
     const url = `https://api.themoviedb.org/3/search/movie?query=${req.query.query}&include_adult=false&language=en-US&page=${req.query.page}`;
@@ -31,7 +30,6 @@ const getMoviesList = async (req, res, next) => {
 };
 const getMovie = async (req, res, next) => {
   if (process.env.USE_API == "true") {
-    console.log(req.params.id, "test", req.query);
     const url = `https://api.themoviedb.org/3/movie/${req.params.id}`;
     const options = {
       method: "GET",
@@ -53,12 +51,10 @@ const getMovie = async (req, res, next) => {
   }
 };
 const handleFavorite = async (req, res, next) => {
-  console.log("handleFavorite");
   try {
     let { movie, like } = req.body;
     const user = await User.findById(req.user?.id);
     if (user) {
-      console.log(like, "like");
       if (like) {
         //like true, add to favorite
 

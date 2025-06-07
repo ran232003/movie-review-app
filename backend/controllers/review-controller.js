@@ -8,9 +8,7 @@ const createReview = async (req, res, next) => {
     // const review = { ...req.body, userId: req.user?.id };
     const review = new Review({ ...req.body, userId: req.user?.id });
     await review.save();
-    console.log("review", review);
     const userReviews = await Review.find({ userId: req.user?.id });
-    console.log("userReviews", userReviews);
     return res.json({ status: "ok", data: userReviews });
   } catch (error) {
     console.log(error);

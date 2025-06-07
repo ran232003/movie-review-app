@@ -38,7 +38,6 @@ const NavigationBar = () => {
       }
     );
   };
-  console.log("navigation", user);
 
   return (
     <>
